@@ -20,6 +20,7 @@ A familiar(ish) desktop for KDE fans, but with all the developer goodness built-
 3. [Developer Experience Edition](https://universal-blue.discourse.group/t/bluefin-dx-the-bluefin-developer-experience/39)
 4. [Administrator's Guide](https://universal-blue.discourse.group/t/bluefin-administrators-guide/40)
 5. [Framework Images](https://universal-blue.org/images/framework/)
+<<<<<<<
 -->
 
 Don't like Gnome but want the all the goodies the awesome Bluefin Image provides? Aurora is a Bluefin fork which utilizes the KDE Desktop environment instead of Gnome, while keeping the core things that make Bluefin awesome the same. 
