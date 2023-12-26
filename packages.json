@@ -1,7 +1,7 @@
 {
 	"all": {
 		"include": {
-			"bluefin": [
+			"aurora": [
 				"bash-color-prompt",
 				"cockpit-bridge",
 				"evtest",
@@ -36,7 +36,7 @@
 				"wl-clipboard", 
 				"zsh"
 			],
-			"bluefin-dx": [
+			"aurora-dx": [
 				"adobe-source-code-pro-fonts",
 				"cascadiacode-nerd-fonts",
 				"cockpit-machines",
@@ -95,39 +95,39 @@
 			]
 		},
 		"exclude": {
-			"bluefin": [
+			"aurora": [
 				"ublue-os-update-services"
 			],
-			"bluefin-dx": [
+			"aurora-dx": [
 				"ublue-os-update-services"
 			]
 		}
 	},
 	"38": {
 		"include": {
-			"bluefin": [
+			"aurora": [
 			],
-			"bluefin-dx": [],
-			"bluefin-framework": []
+			"aurora-dx": [],
+			"aurora-framework": []
 		},
 		"exclude": {
-			"bluefin": [
+			"aurora": [
 			],
-			"bluefin-dx": []
+			"aurora-dx": []
 		}
 	},
 	"39": {
 		"include": {
-			"bluefin": [
+			"aurora": [
 			],
-			"bluefin-dx": [],
-			"bluefin-framework": []
+			"aurora-dx": [],
+			"aurora-framework": []
 		},
 		"exclude": {
-			"bluefin": [
+			"aurora": [
 			],
-			"bluefin-dx": [],
-			"bluefin-framework": []
+			"aurora-dx": [],
+			"aurora-framework": []
 		}
 	}
 }
