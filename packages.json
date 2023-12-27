@@ -14,6 +14,8 @@
 				"libgda-sqlite",
 				"libgda",
 				"libimobiledevice",
+				"libadwaita-qt5",
+				"libadwaita",
 				"libratbag-ratbagd",
 				"libxcrypt-compat",
 				"make",
