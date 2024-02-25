@@ -1,7 +1,9 @@
 # Project Aurora
-Don't like Gnome but want the all the goodies the awesome Bluefin Image provides? Aurora is Bluefin but with KDE instead Gnome as a desktop environment.
+Don't like Gnome but want the all the goodies the awesome Bluefin Image provides? Aurora is a Bluefin fork which utilizes the KDE Desktop environment instead of Gnome, while keeping the core things that make Bluefin awesome the same. 
 
-**This image is considered Alpha!** 
+![This is the Aurora Banner.](./banner.jpg)
+
+# **This image is considered Alpha!** 
 
 -Website coming soon-
 
