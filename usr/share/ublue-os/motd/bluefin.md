@@ -9,5 +9,3 @@ Let's get stargazing.
 | `ujust brew` | Install Homebrew (Strongly Recommended) |
 
 | `ujust bluefin-cli` | Configure the terminal (Alpha) |
-
-%TIP%
