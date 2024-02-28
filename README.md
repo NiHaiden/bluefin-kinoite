@@ -39,6 +39,10 @@ We're going to the stars! Aurora is getting it's first ever logo.
 
 [Aurora-DX Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-latest.iso)
 
+[Aurora Nvidia Offline ISO Download](https://aurora-dl.niklas.tech/aurora-nvidia-latest.iso)
+
+[Aurora-DX Nvidia Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-nvidia-latest.iso)
+
 [Aurora Surface ISO Download](https://aurora-dl.niklas.tech/aurora-surface-latest.iso)
 
 [Aurora-DX Surface Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-surface-latest.iso)
