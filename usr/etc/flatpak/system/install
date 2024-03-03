@@ -11,9 +11,10 @@ org.gnome.Logs
 org.gnome.Maps
 org.kde.kweather
 org.kde.kclock
+org.kde.haruna
+org.kde.filelight
 com.github.tchx84.Flatseal
 io.github.dvlv.boxbuddyrs
 io.github.flattool.Warehouse
 org.fedoraproject.MediaWriter
 io.missioncenter.MissionCenter
-org.kde.haruna
