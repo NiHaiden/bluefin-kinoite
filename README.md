@@ -35,21 +35,21 @@ We're going to the stars! Aurora is getting it's first ever logo.
 
 # Downloads
 
-[Aurora Offline ISO Download](https://aurora-dl.niklas.tech/aurora-latest.iso)
+[Aurora Offline ISO Download](https://dl.getaurora.dev/aurora-latest.iso)
 
-[Aurora-DX Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-latest.iso)
+[Aurora-DX Offline ISO Download](https://dl.getaurora.dev/aurora-dx-latest.iso)
 
-[Aurora Nvidia Offline ISO Download](https://aurora-dl.niklas.tech/aurora-nvidia-latest.iso)
+[Aurora Nvidia Offline ISO Download](https://dl.getaurora.dev/aurora-nvidia-latest.iso)
 
-[Aurora-DX Nvidia Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-nvidia-latest.iso)
+[Aurora-DX Nvidia Offline ISO Download](https://dl.getaurora.dev/aurora-dx-nvidia-latest.iso)
 
-[Aurora Surface ISO Download](https://aurora-dl.niklas.tech/aurora-surface-latest.iso)
+[Aurora Surface ISO Download](https://dl.getaurora.dev/aurora-surface-latest.iso)
 
-[Aurora-DX Surface Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-surface-latest.iso)
+[Aurora-DX Surface Offline ISO Download](https://dl.getaurora.dev/aurora-dx-surface-latest.iso)
 
-[Aurora Framework ISO Download](https://aurora-dl.niklas.tech/aurora-framework-latest.iso)
+[Aurora Framework ISO Download](https://dl.getaurora.dev/aurora-framework-latest.iso)
 
-[Aurora-DX Framework Offline ISO Download](https://aurora-dl.niklas.tech/aurora-dx-framework-latest.iso)
+[Aurora-DX Framework Offline ISO Download](https://dl.getaurora.dev/aurora-dx-framework-latest.iso)
 
 # What is Aurora anyway?
 Aurora is a brand-new, customized and fine-tuned KDE experience that gears towards power users and developers alike. The images contain many useful scripts and tools, all derived from the awesome Bluefin project by the Universal-Blue Team. It combines these nice things with the KDE desktop environment which is a beautiful, modern and sleek desktop experience packed with features. 
