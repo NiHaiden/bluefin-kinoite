@@ -9,12 +9,14 @@ on:
       - testing
     paths-ignore:
       - '**.md'
+      - '.github/workflows/build_iso.yml'
   push:
     branches:
       - main
       - testing
     paths-ignore:
       - '**.md'
+      - '.github/workflows/build_iso.yml'
   workflow_dispatch:
 env:
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
@@ -66,6 +68,7 @@ jobs:
     
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v6
+
 
       - name: Check just syntax
         uses: ublue-os/just-action@v1
