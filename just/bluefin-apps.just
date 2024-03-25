@@ -10,7 +10,6 @@
 # fix-       = apply fix/patch/workaround for something
 # foo        = no verb is used for shortcuts or something deemed important enough to use a super memorable name
 
-
 alias brew-fleek := install-brew-fleek
 
 # Install "fleek" set of packages for brew | none, low, default, high
