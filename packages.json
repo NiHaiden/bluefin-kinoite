@@ -107,11 +107,11 @@
 		},
 		"exclude": {
 			"aurora": [
-				"ublue-os-update-services"
+				"ublue-os-update-services",
 				"plasma-welcome"
 			],
 			"aurora-dx": [
-				"ublue-os-update-services"
+				"ublue-os-update-services",
 				"plasma-welcome"
 			]
 		}
