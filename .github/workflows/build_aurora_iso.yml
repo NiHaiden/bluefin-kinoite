@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image_name: [aurora, aurora-dx, aurora-nvidia, aurora-dx-nvidia, aurora-dx-surface, aurora-surface, aurora-dx-framework, aurora-framework]
+        image_name: [aurora, aurora-dx, aurora-nvidia, aurora-dx-nvidia, aurora-dx-surface, aurora-surface, aurora-surface-nvidia, aurora-dx-surface-nvidia, aurora-asus, aurora-asus-nvidia, aurora-dx-asus, aurora-dx-asus-nvidia, aurora-dx-framework, aurora-framework]
         major_version: [39]
         image_tag: [latest]
         
