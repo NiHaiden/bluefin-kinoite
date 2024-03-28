@@ -135,6 +135,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
     touch /etc/systemd/user.conf && \ 
     sed -i 's/#DefaultLimitNOFILE=/DefaultLimitNOFILE=4096:524288/' /etc/systemd/user.conf && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
+    touch /etc/systemd/system.conf && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
     sed -i '/^PRETTY_NAME/s/Kinoite/aurora/' /usr/lib/os-release && \
     if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \ 
