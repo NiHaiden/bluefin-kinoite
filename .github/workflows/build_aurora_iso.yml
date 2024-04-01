@@ -114,7 +114,7 @@ jobs:
           arch: x86_64
           image_name: ${{ matrix.image_name }}
           image_repo: ghcr.io/nihaiden
-          variant: "Silverblue"
+          variant: "Kinoite"
           version: ${{ matrix.major_version }}
           image_tag: ${{ steps.generate-tag.outputs.tag }}
           secure_boot_key_url: "https://github.com/ublue-os/akmods/raw/main/certs/public_key.der"
