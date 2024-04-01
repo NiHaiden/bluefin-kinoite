@@ -76,20 +76,7 @@ jobs:
           #fi
 
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
-          
-      - name: Build ISOs
-        #if: github.event_name == 'push' && github.ref_name == github.event.repository.default_branch
-        uses: ublue-os/isogenerator@1.0.5
-        with:
-          ARCH: x86_64
-          IMAGE_NAME: ${{ matrix.image_name }}
-          IMAGE_REPO: ghcr.io/nihaiden
-          VARIANT: "Kinoite"
-          VERSION: ${{ matrix.major_version }}
-          IMAGE_TAG: ${{ matrix.image_tag }}
-          ACTION_REPO: ublue-os/isogenerator
-          ACTION_REF: 1.0.5
-    
+        
       - name: Determine Flatpak Dependencies
         id: flatpak_dependencies
         shell: bash
