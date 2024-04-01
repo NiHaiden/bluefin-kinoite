@@ -18,25 +18,17 @@ ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="aurora"
 
 # GNOME VRR & Ptyxi
-RUN echo "${FEDORA_MAJOR_VERSION}"
-RUN if [ ${FEDORA_MAJOR_VERSION} -ge "39" ]; then \
-      wget https://copr.fedorainfracloud.org/coprs/kylegospo/prompt/repo/fedora-$(rpm -E %fedora)/kylegospo-prompt-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_kylegospo-prompt.repo && \
+RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
+      if [ ${FEDORA_MAJOR_VERSION} -ge "39" ]; then \
         rpm-ostree override replace \
         --experimental \
-        --from repo=copr:copr.fedorainfracloud.org:kylegospo:prompt \
+        --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
+            gtk4 \
             vte291 \
             vte-profile \
             libadwaita && \
         rpm-ostree install \
-            ptyxis && \
-        rm -f /etc/yum.repos.d/_copr_kylegospo-prompt.repo && \
-        rpm-ostree override remove \
-            power-profiles-daemon \
-            || true && \
-        rpm-ostree override remove \
-            tlp \
-            tlp-rdw \
-            || true \
+            ptyxis \
     ; fi
 
 # Install Explicit Sync Patches on Nvidia builds
@@ -60,27 +52,14 @@ COPY etc/yum.repos.d/ /etc/yum.repos.d/
 COPY packages.json /tmp/packages.json
 COPY build.sh /tmp/build.sh
 COPY image-info.sh /tmp/image-info.sh
+COPY install-akmods.sh /tmp/install-akmods.sh
 COPY fetch-quadlets.sh /tmp/fetch-quadlets.sh
 # Copy ublue-update.toml to tmp first, to avoid being overwritten.
 COPY usr/etc/ublue-update/ublue-update.toml /tmp/ublue-update.toml
 
 # Add ublue kmods, add needed negativo17 repo and then immediately disable due to incompatibility with RPMFusion
 COPY --from=ghcr.io/ublue-os/akmods:${AKMODS_FLAVOR}-${FEDORA_MAJOR_VERSION} /rpms /tmp/akmods-rpms
-RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo && \
-    wget https://negativo17.org/repos/fedora-multimedia.repo -O /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
-    if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \
-        rpm-ostree install \
-            /tmp/akmods-rpms/kmods/*xpadneo*.rpm \
-            /tmp/akmods-rpms/kmods/*xone*.rpm \
-            /tmp/akmods-rpms/kmods/*openrazer*.rpm \
-            /tmp/akmods-rpms/kmods/*v4l2loopback*.rpm \
-            /tmp/akmods-rpms/kmods/*wl*.rpm \
-    ; fi && \
-    if grep -qv "asus" < "${AKMODS_FLAVOR}"; then \
-        rpm-ostree install \
-            /tmp/akmods-rpms/kmods/*evdi*.rpm \
-    ; fi && \
-    sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
+RUN /tmp/install-akmods.sh && \
     wget https://copr.fedorainfracloud.org/coprs/che/nerd-fonts/repo/fedora-"${FEDORA_MAJOR_VERSION}"/che-nerd-fonts-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/_copr_che-nerd-fonts-"${FEDORA_MAJOR_VERSION}".repo
 
 # Starship Shell Prompt
@@ -92,14 +71,9 @@ RUN curl -Lo /tmp/starship.tar.gz "https://github.com/starship/starship/releases
 # Copy Bluefin CLI packages
 COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/atuin /usr/bin/atuin
 COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/share/bash-prexec /usr/share/bash-prexec
-COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/eza /usr/bin/eza
-COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/fd /usr/bin/fd
-COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/fzf /usr/bin/fzf
-COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/rg /usr/bin/rg
-COPY --from=ghcr.io/ublue-os/bluefin-cli /usr/bin/zoxide /usr/bin/zoxide
 
-RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FEDORA_MAJOR_VERSION}"/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-    wget https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -O /usr/libexec/brew-install && \
+
+RUN wget https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -O /usr/libexec/brew-install && \
     chmod +x /usr/libexec/brew-install && \
     /tmp/build.sh && \
     /tmp/image-info.sh && \
@@ -111,16 +85,14 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
     cp /tmp/ublue-update.toml /usr/etc/ublue-update/ublue-update.toml && \
     if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \
-        echo "enabling tuned service for f39 builds" \ 
         systemctl enable tuned.service \
     ; fi && \
     systemctl enable rpm-ostree-countme.service && \
     systemctl enable tailscaled.service && \
     systemctl enable dconf-update.service && \
+    systemctl --global enable ublue-flatpak-manager.service && \
     systemctl enable ublue-update.timer && \
     systemctl enable ublue-system-setup.service && \
-    systemctl enable ublue-system-flatpak-manager.service && \
-    systemctl --global enable ublue-user-flatpak-manager.service && \
     systemctl --global enable ublue-user-setup.service && \
     fc-cache -f /usr/share/fonts/ubuntu && \
     fc-cache -f /usr/share/fonts/inter && \
@@ -135,7 +107,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
     sed -i 's/#DefaultLimitNOFILE=/DefaultLimitNOFILE=4096:524288/' /etc/systemd/user.conf && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
-    sed -i '/^PRETTY_NAME/s/Kinoite/aurora/' /usr/lib/os-release && \
+    sed -i '/^PRETTY_NAME/s/Kinoite/Aurora/' /usr/lib/os-release && \
     if [[ "${FEDORA_MAJOR_VERSION}" -ge "39" ]]; then \ 
         sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:org.gnome.Ptyxis.desktop,applications:org.kde.discover.desktop,preferred:\/\/filemanager<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml  && \
         sed -i '/<entry name="favorites" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,systemsettings.desktop,org.kde.dolphin.desktop,org.kde.kate.desktop,org.gnome.Ptyxis.desktop,org.kde.discover.desktop<\/default>/' /usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml  && \
@@ -143,7 +115,6 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"$
         sed -i 's@Keywords=@Keywords=konsole;@g' /usr/share/applications/org.gnome.Ptyxis.desktop &&  \
         cp /usr/share/applications/org.gnome.Ptyxis.desktop /usr/share/kglobalaccel/org.gnome.Ptyxis.desktop \
     ; fi && \
-    rm -f /usr/share/kglobalaccel/org.kde.konsole.desktop && \
     rm -rf /tmp/* /var/* && \
     ostree container commit && \
     mkdir -p /var/tmp && \
@@ -180,26 +151,9 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ganto/lxc4/repo/fedora-"${FEDOR
 RUN /tmp/build.sh && \
     /tmp/image-info.sh
 
-RUN wget https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -O /tmp/docker-compose && \
-    install -c -m 0755 /tmp/docker-compose /usr/bin
-
-COPY --from=cgr.dev/chainguard/dive:latest /usr/bin/dive /usr/bin/dive
-COPY --from=cgr.dev/chainguard/flux:latest /usr/bin/flux /usr/bin/flux
-COPY --from=cgr.dev/chainguard/helm:latest /usr/bin/helm /usr/bin/helm
-COPY --from=cgr.dev/chainguard/ko:latest /usr/bin/ko /usr/bin/ko
-COPY --from=cgr.dev/chainguard/minio-client:latest /usr/bin/mc /usr/bin/mc
-COPY --from=cgr.dev/chainguard/kubectl:latest /usr/bin/kubectl /usr/bin/kubectl
-
 RUN curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-$(uname)-amd64" && \
     chmod +x ./kind && \
     mv ./kind /usr/bin/kind
-
-
-
-# Install kns/kctx and add completions for Bash
-RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr/bin/kubectx && \
-    wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -O /usr/bin/kubens && \
-    chmod +x /usr/bin/kubectx /usr/bin/kubens
 
 # Set up services
 RUN systemctl enable docker.socket && \

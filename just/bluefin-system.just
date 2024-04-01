@@ -36,7 +36,7 @@ devmode:
         echo "and reboot your system when the update is finished."
         exit
     fi
-    if grep -q "bluefin-dx" <<< $CURRENT_IMAGE
+    if grep -q "aurora-dx" <<< $CURRENT_IMAGE
     then
         CURRENT_STATE="enabled"
     else
@@ -52,7 +52,7 @@ devmode:
             echo "You are already on a developer image"
         else
             echo "Rebasing to a developer image"
-            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin/bluefin-dx/")
+            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/aurora/aurora-dx/")
             rpm-ostree rebase $NEW_IMAGE
         fi
     elif [ "$OPTION" = "Disable" ]
@@ -60,7 +60,7 @@ devmode:
         if [ "$CURRENT_STATE" = "enabled" ]
         then
             echo "Rebasing to a non developer image"
-            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/bluefin-dx/bluefin/")
+            NEW_IMAGE=$(echo $CURRENT_IMAGE | sed "s/aurora-dx/aurora/")
             rpm-ostree rebase $NEW_IMAGE
         else
             echo "You are currently not on a developer image"
@@ -93,40 +93,6 @@ configure-shell ACTION="":
       sudo usermod $USER --shell /usr/bin/$OPTION 
       printf "${USER}'s shell is now %s.\n" "$(cat /etc/passwd | grep ":$UID:" | cut '-d:' '-f7')"
     fi
-
-alias gnome-extensions := get-gnome-extensions
-
-# Install recommended GNOME extensions
-get-gnome-extensions:
-    pip install --upgrade gnome-extensions-cli
-    gext install nightthemeswitcher@romainvigier.fr
-    gext install pano@elhan.io
-    gext install weatheroclock@CleoMenezesJr.github.io
-
-alias gnome-vrr := toggle-gnome-vrr
-
-# Enable or Disable Gnome-VRR
-toggle-gnome-vrr:
-    #!/usr/bin/env bash
-    if gsettings get org.gnome.mutter experimental-features | grep -q "variable-refresh-rate"
-    then
-      CURRENT_STATE="Enabled"
-    else
-      CURRENT_STATE="Disabled"
-    fi
-    echo "Gnome-VRR is currently ${CURRENT_STATE}"
-    echo "Enable or Disable Gnome-VRR"
-    OPTION=$(gum choose Enable Disable)
-    if [ "$OPTION" = "Enable" ]
-    then
-      echo "Enabling Gnome-VRR"
-      gsettings set org.gnome.mutter experimental-features "['variable-refresh-rate','scale-monitor-framebuffer']"
-    elif [ "$OPTION" = "Disable" ]
-    then
-      echo "Disabling Gnome-VRR"
-      gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-    fi
-    echo "To apply the changes make sure you logout and restart your session"
 
 # Ptyxis terminal transparency
 ptyxis-transparency opacity="0.95":

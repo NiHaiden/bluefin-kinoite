@@ -61,7 +61,7 @@
 				"code",
 				"containerd.io",
 				"dbus-x11",
-                                "devpod",
+                "devpod",
 				"distrobuilder",
 				"docker-ce",
 				"docker-ce-cli",
@@ -99,6 +99,8 @@
 				"qemu-user-binfmt",
 				"qemu-user-static",
 				"qemu",
+				"rocm-hip", 
+				"rocm-opencl",
 				"ubuntu-family-fonts",
 				"udica",
 				"virt-manager",
@@ -125,6 +127,7 @@
 		},
 		"exclude": {
 			"aurora": [
+				"podman-docker"
 			],
 			"aurora-dx": []
 		}
@@ -136,7 +139,6 @@
 				"tuned",
 				"tuned-ppd",
 				"tuned-utils",
-				"tuned-utils-systemtap",
 				"tuned-profiles-atomic"
 			],
 			"aurora-dx": [],
@@ -144,6 +146,11 @@
 		},
 		"exclude": {
 			"aurora": [
+				"podman-docker",
+				"gnome-terminal-nautilus",
+				"power-profiles-daemon",
+				"tlp",
+				"tlp-rdw"
 			],
 			"aurora-dx": [],
 			"aurora-framework": []

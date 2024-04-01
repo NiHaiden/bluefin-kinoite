@@ -9,14 +9,12 @@ on:
       - testing
     paths-ignore:
       - '**.md'
-      - '.github/workflows/build_iso.yml'
   push:
     branches:
       - main
       - testing
     paths-ignore:
       - '**.md'
-      - '.github/workflows/build_iso.yml'
   workflow_dispatch:
 env:
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
@@ -48,18 +46,27 @@ jobs:
             is_latest_version: true
             is_stable_version: true
             is_gts_version: false
+        exclude:
+          - major_version: 38
+            image_flavor: asus
+          - major_version: 38
+            image_flavor: asus-nvidia
+          - major_version: 38
+            image_flavor: surface
+          - major_version: 38
+            image_flavor: surface-nvidia
     steps:
       - name: Checkout
         uses: actions/checkout@v4
   
       - name: Verify base image
-        uses: EyeCantCU/cosign-action/verify@v0.2.1
+        uses: EyeCantCU/cosign-action/verify@v0.2.2
         with:
           containers: kinoite-${{ matrix.image_flavor }}:${{ matrix.major_version }}
 
       - name: Verify Chainguard images
         if: matrix.base_name != 'aurora'
-        uses: EyeCantCU/cosign-action/verify@v0.2.1
+        uses: EyeCantCU/cosign-action/verify@v0.2.2
         with:
           containers: flux, helm, ko, minio, kubectl
           cert-identity: https://github.com/chainguard-images/images/.github/workflows/release.yaml@refs/heads/main
@@ -144,7 +151,7 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          ver=$(skopeo inspect docker://ghcr.io/ublue-os/silverblue-${{ matrix.image_flavor }}:${{ matrix.major_version }} | jq -r '.Labels["org.opencontainers.image.version"]')
+          ver=$(skopeo inspect docker://ghcr.io/ublue-os/kinoite-${{ matrix.image_flavor }}:${{ matrix.major_version }} | jq -r '.Labels["org.opencontainers.image.version"]')
           if [ -z "$ver" ] || [ "null" = "$ver" ]; then
             echo "inspected image version must not be empty or null"
             exit 1
@@ -161,7 +168,7 @@ jobs:
           labels: |
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
-            org.opencontainers.image.description=An interpretation of the Ubuntu spirit built on Fedora technology 
+            org.opencontainers.image.description=The ultimate developer workstation, based on KDE.
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/NiHaiden/aurora/README.md
             io.artifacthub.package.logo-url=https://raw.githubusercontent.com/NiHaiden/aurora/main/banner.jpg
 
