@@ -1,159 +1,173 @@
 {
-	"all": {
-		"include": {
-			"aurora": [
-				"bash-color-prompt",
-				"bcache-tools",
-				"cockpit-bridge",
-				"evtest",
-				"epson-inkjet-printer-escpr",
-				"epson-inkjet-printer-escpr2",
-				"fish",
-				"firewall-config",
-				"fastfetch",
-				"gcc",
-				"glow",
-				"gum",
-				"hplip",
-				"ifuse",
-				"input-remapper",
-				"libgda-sqlite",
-				"libgda",
-				"libimobiledevice",
-				"libadwaita-qt5",
-				"libadwaita",
-				"libratbag-ratbagd",
-				"libxcrypt-compat",
-				"make",
-				"mesa-libGLU",
-				"nerd-fonts",
-				"playerctl",
-				"pulseaudio-utils",
-				"python3-pip",
-				"rclone",
-				"restic",
-				"samba-dcerpc",
-				"samba-ldb-ldap-modules",
-				"samba-winbind-clients",
-				"samba-winbind-modules",
-				"samba",
-				"solaar",
-				"stress-ng",
-				"tailscale",
-				"tmux",
-				"usbmuxd",
-				"wireguard-tools",
-				"xprop",
-				"wl-clipboard", 
-				"zsh"
-			],
-			"aurora-dx": [
-				"adobe-source-code-pro-fonts",
-				"cascadia-code-fonts",
-				"cockpit-machines",
-				"cockpit-networkmanager",
-				"cockpit-ostree",
-				"cockpit-pcp",
-				"cockpit-podman",
-				"cockpit-selinux",
-				"cockpit-storaged",
-				"cockpit-system",
-				"code",
-				"containerd.io",
-				"dbus-x11",
-                "devpod",
-				"distrobuilder",
-				"docker-ce",
-				"docker-ce-cli",
-				"docker-buildx-plugin",
-				"docker-compose-plugin",
-				"edk2-ovmf",
-				"genisoimage",
-				"google-droid-sans-mono-fonts",
-				"google-go-mono-fonts",
-				"ibm-plex-mono-fonts",
-				"incus",
-				"incus-agent",
-				"iotop",
-				"jetbrains-mono-fonts-all",
-				"kcli",
-				"libvirt",
-				"lxc",
-				"lxd-agent",
-				"lxd",
-				"mozilla-fira-mono-fonts",
-				"p7zip-plugins",
-				"p7zip",
-				"podman-compose",
-				"podman-plugins",
-				"podman-tui",
-				"podmansh",
-				"powerline-fonts",
-				"powertop",
-				"qemu-char-spice",
-				"qemu-device-display-virtio-gpu",
-				"qemu-device-display-virtio-vga",
-				"qemu-device-usb-redirect",
-				"qemu-img",
-				"qemu-system-x86-core",
-				"qemu-user-binfmt",
-				"qemu-user-static",
-				"qemu",
-				"rocm-hip", 
-				"rocm-opencl",
-				"ubuntu-family-fonts",
-				"udica",
-				"virt-manager",
-				"virt-viewer"
-			]
-		},
-		"exclude": {
-			"aurora": [
-				"ublue-os-update-services",
-				"plasma-welcome"
-			],
-			"aurora-dx": [
-				"ublue-os-update-services",
-				"plasma-welcome"
-			]
-		}
+  "all": {
+    "include": {
+      "aurora": [
+        "bash-color-prompt",
+        "bcache-tools",
+        "cockpit-bridge",
+        "evtest",
+        "epson-inkjet-printer-escpr",
+        "epson-inkjet-printer-escpr2",
+        "fish",
+        "firewall-config",
+        "fastfetch",
+        "gcc",
+        "glow",
+        "gum",
+        "hplip",
+        "ifuse",
+        "input-remapper",
+        "libgda-sqlite",
+        "libgda",
+        "libimobiledevice",
+        "libadwaita-qt5",
+        "libratbag-ratbagd",
+        "libxcrypt-compat",
+        "make",
+        "mesa-libGLU",
+        "nerd-fonts",
+        "playerctl",
+        "pulseaudio-utils",
+        "python3-pip",
+        "rclone",
+        "restic",
+        "samba-dcerpc",
+        "samba-ldb-ldap-modules",
+        "samba-winbind-clients",
+        "samba-winbind-modules",
+        "samba",
+        "solaar",
+        "stress-ng",
+        "tailscale",
+        "tmux",
+        "usbmuxd",
+        "wireguard-tools",
+        "xprop",
+        "wl-clipboard",
+        "zsh"
+      ],
+      "aurora-dx": [
+        "adobe-source-code-pro-fonts",
+        "cascadia-code-fonts",
+        "cockpit-machines",
+        "cockpit-networkmanager",
+        "cockpit-ostree",
+        "cockpit-pcp",
+        "cockpit-podman",
+        "cockpit-selinux",
+        "cockpit-storaged",
+        "cockpit-system",
+        "code",
+        "containerd.io",
+        "dbus-x11",
+        "devpod",
+        "docker-ce",
+        "docker-ce-cli",
+        "docker-buildx-plugin",
+        "docker-compose-plugin",
+        "edk2-ovmf",
+        "genisoimage",
+        "google-droid-sans-mono-fonts",
+        "google-go-mono-fonts",
+        "ibm-plex-mono-fonts",
+        "incus",
+        "incus-agent",
+        "iotop",
+        "jetbrains-mono-fonts-all",
+        "kcli",
+        "libvirt",
+        "lxc",
+        "lxd-agent",
+        "lxd",
+        "mozilla-fira-mono-fonts",
+        "p7zip-plugins",
+        "p7zip",
+        "podman-compose",
+        "podman-tui",
+        "podmansh",
+        "powerline-fonts",
+        "powertop",
+        "qemu-char-spice",
+        "qemu-device-display-virtio-gpu",
+        "qemu-device-display-virtio-vga",
+        "qemu-device-usb-redirect",
+        "qemu-img",
+        "qemu-system-x86-core",
+        "qemu-user-binfmt",
+        "qemu-user-static",
+        "qemu",
+        "rocm-hip",
+        "rocm-opencl",
+        "ubuntu-family-fonts",
+        "udica",
+        "virt-manager",
+        "virt-viewer"
+      ]
+    },
+    "exclude": {
+      "aurora": ["ublue-os-update-services", "plasma-welcome"],
+      "aurora-dx": ["ublue-os-update-services", "plasma-welcome"]
+    }
+  },
+  "38": {
+    "include": {
+      "aurora": [],
+      "aurora-dx": ["distrobuilder", "podman-plugins"],
+      "aurora-framework": []
+    },
+    "exclude": {
+      "aurora": ["podman-docker"],
+      "aurora-dx": []
+    }
+  },
+  "39": {
+    "include": {
+      "aurora": [
+        "input-leap",
+        "tuned",
+        "tuned-ppd",
+        "tuned-utils",
+        "tuned-profiles-atomic"
+      ],
+      "aurora-dx": ["distrobuilder", "podman-plugins"],
+      "aurora-framework": []
+    },
+    "exclude": {
+      "aurora": [
+        "podman-docker",
+        "gnome-terminal-nautilus",
+        "power-profiles-daemon",
+        "tlp",
+        "tlp-rdw"
+      ],
+      "aurora-dx": [],
+      "aurora-framework": []
+    }
+  }, 
+
+  "40": {
+	"include": {
+		"aurora": [
+			"input-leap",
+			"tuned",
+			"tuned-ppd",
+			"tuned-utils",
+			"tuned-profiles-atomic"
+		],
+		"aurora-dx": [],
+		"aurora-framework": []
 	},
-	"38": {
-		"include": {
-			"aurora": [
-			],
-			"aurora-dx": [],
-			"aurora-framework": []
-		},
-		"exclude": {
-			"aurora": [
-				"podman-docker"
-			],
-			"aurora-dx": []
-		}
-	},
-	"39": {
-		"include": {
-			"aurora": [
-				"input-leap",
-				"tuned",
-				"tuned-ppd",
-				"tuned-utils",
-				"tuned-profiles-atomic"
-			],
-			"aurora-dx": [],
-			"aurora-framework": []
-		},
-		"exclude": {
-			"aurora": [
-				"podman-docker",
-				"gnome-terminal-nautilus",
-				"power-profiles-daemon",
-				"tlp",
-				"tlp-rdw"
-			],
-			"aurora-dx": [],
-			"aurora-framework": []
-		}
+	"exclude": {
+		"aurora": [
+			"podman-docker",
+			"gnome-terminal-nautilus",
+			"power-profiles-daemon",
+			"tlp",
+			"tlp-rdw"
+		],
+		"aurora-dx": [],
+		"aurora-framework": []
 	}
+}
+
 }
