@@ -17,22 +17,13 @@ To rebase to the new images, please use the following command **(adjust accordin
 
 Use the `:40`  tag for the new shiny Fedora 40 images or the `:latest` tag to get the latest stable release.
 
-**To get Aurora 39:** 
+**To get Aurora Stable (from a working Ublue-Image-Install):** 
 
-`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora:latest`
+`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora:stable`
 
-**To get Aurora-DX 39:** 
+**To get Aurora DX Stable (from a working Ublue-Image-Install):** 
 
-`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora-dx:latest`
-
-**To get Aurora 40 (do note that these images may contain bugs):** 
-
-`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora:40`
-
-
-**To get Aurora-DX 40 (do note that these images may contain bugs):**
-
-`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora-dx:40`
+`rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/aurora-dx:stable`
 
 
 Please test out these images and give us feedback on how they are working out. New ISOs coming soon!
